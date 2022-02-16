@@ -1,0 +1,32 @@
+
+   
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+form > * {
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 2px;
+    width: fit-content;
+    border: none;
+}
+
+textarea {
+    padding: 2px;
+    width: 500px;
+    border: none;
+}
+
+button {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 7px;
+    cursor: pointer;
+}
