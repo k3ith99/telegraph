@@ -1,0 +1,50 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+form > * {
+    margin-bottom: 100px;
+  
+}
+
+input {
+    padding: 20px;
+    width: fit-content;
+    border: none;
+    margin-right: 50px;
+    justify-items: center;
+
+    
+}
+
+
+textarea {
+    padding: 20px;
+    width: 150px;
+    width: fit-content;
+    border: none;
+}
+
+button {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    width: fit-content;
+    margin-right: 100px;
+    
+}
+
+.card{
+    display: block;
+    align-items: center;
+      overflow: hidden;
+      margin: 5em auto;
+      height: 500px;
+      width: 700px;	
+}
+
+
