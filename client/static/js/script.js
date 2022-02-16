@@ -24,32 +24,35 @@ async function sendData(e) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(postData)
         }
-        console.log(options.body)
+        
         const res = await fetch('http://localhost:3000/posts', options);
         const { path, err } = await res.json();
         if(err) { 
             throw Error(err) 
         } else {
             window.location.hash = `#${path}`
-            getData()
+            getData(path)
         }
     } catch(err) {
         console.log(err)
     }
 }
 
-async function getData() {
+async function getData(path) {
     try {
-        // console.log("hello")
-        let res = await fetch('http://localhost:3000/posts')
+        
+        let res = await fetch(`http://localhost:3000${path}`)
+        
         // console.log(res)
         let data = await res.json()
+        console.log("hello")
         console.log(data)
         // console.log(data.posts)
         if (!data) { throw new Error("no posts")}
-        data.forEach(post => {
-            drawPost(post)
-        });
+        else{
+            drawPost(data)
+        }
+        
     } catch(err) {
         console.log(err)
     }
@@ -59,6 +62,7 @@ async function getData() {
 
 function drawPost(data) {
     let card = document.createElement('div')
+    card.classList.add("card")
     let title = document.createElement('h2')
     let pseudonym = document.createElement('h3')
     let story = document.createElement('p')
@@ -67,14 +71,13 @@ function drawPost(data) {
     title.classList.add("title")
     pseudonym.textContent = data.pseudonym
     pseudonym.classList.add("pseudonym")
-    story.textContent = data.story
+    story.textContent = data.post_body
     story.classList.add("story")
 
     card.append(title)
     card.append(pseudonym)
     card.append(story)
-
-    let main = document.querySelector('main')
-    main.innerHTML = ""
-    main.append(card)
+    let body = document.querySelector('body')
+    body.innerHTML = ""
+    body.append(card)
 }

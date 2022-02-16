@@ -5,6 +5,7 @@ class Post {
 
     constructor(data) {
         this.id = data.id
+        this.title = data.title
         this.pseudonym  = data.pseudonym 
         this.post_body = data.post_body
         this.path = `/posts/${data.id}`

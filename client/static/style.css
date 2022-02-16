@@ -37,3 +37,14 @@ button {
     margin-right: 100px;
     
 }
+
+.card{
+    display: block;
+    align-items: center;
+      overflow: hidden;
+      margin: 5em auto;
+      height: 500px;
+      width: 700px;	
+}
+
+
