@@ -37,6 +37,20 @@ class Post {
         })
     }
 
+    static create(postData){
+        return new Promise (async (res, rej) => {
+            try {
+                const {title, pseudonym, post_body} = postData
+                let postData = await db.query(`INSERT INTO posts (title, pseudonym, post_body) VALUES ($1, $2, $3) RETURNING *;`, [ title, pseudonym, post_body]);
+                let newPost = new Post(postData.rows[0]);
+                res (newPost);
+            } catch (err) {
+                console.log(err.message)
+                rej('Error creating post');
+            }
+        });
+    }
+
 
 
 }
