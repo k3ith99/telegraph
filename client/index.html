@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/style.css">
+    <script defer src="./static/js/script.js"></script>
     <title>Telegraph</title>
 </head>
 <body>
@@ -12,9 +13,10 @@
         <input type = "text" id = "title" placeholder="Title" required>
         <input type = "text" id = "pseudonym" placeholder="Your name" required>
         <textarea type = "text" id = "story" placeholder="Your story" required></textarea> 
-        <button id="submit-btn">PUBLISH</button>
+        <button id="submit">PUBLISH</button>
     
     </form>
-
+    <div id = "post-container"></div>
+    <div id ="single-post"></div>
 </body>
 </html>
