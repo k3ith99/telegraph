@@ -7,14 +7,14 @@ class Post {
         this.id = data.id
         this.pseudonym  = data.pseudonym 
         this.post_body = data.post_body
-        this.path = `/post/${data.id}`
+        this.path = `/posts/${data.id}`
     }
 
     static get all() {
         return new Promise(async (res,rej) => {
             try{
-                let postData = await db.query("SELECT * FROM posts")
-                let posts = postData.rows.map((post) => new Post)
+                let postData = await db.query("SELECT * FROM posts;")
+                let posts = postData.rows.map((post) => new Post(post))
                 res(posts)
             } catch (err) {
                 console.log(err)
@@ -39,8 +39,8 @@ class Post {
 
     static create(postData){
         return new Promise (async (res, rej) => {
+            const {title, pseudonym, post_body} = postData
             try {
-                const {title, pseudonym, post_body} = postData
                 let postData = await db.query(`INSERT INTO posts (title, pseudonym, post_body) VALUES ($1, $2, $3) RETURNING *;`, [ title, pseudonym, post_body]);
                 let newPost = new Post(postData.rows[0]);
                 res (newPost);
