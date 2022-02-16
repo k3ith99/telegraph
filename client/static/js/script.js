@@ -25,9 +25,6 @@ async function sendData(e) {
         if(err) { 
             throw Error(err) 
         } else {
-            document.querySelector('#title').value = ''
-            document.querySelector('#pseudonym').value = ''
-            document.querySelector('#story').value = ''
             window.location.hash = `#${id}`
             updateContent()
         }
