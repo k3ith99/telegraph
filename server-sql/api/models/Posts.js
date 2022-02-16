@@ -23,6 +23,20 @@ class Post {
         }) 
     }
 
+    static findById(id) {
+        return new Promise(async (res, rej) => {
+            try{
+                let postData = await db.query(`Select * from posts WHERE posts.id = $1;`, [id]);
+                let post = new Post(postData.rows[0])
+                res(post)
+
+            } catch(err) {
+                console.log(err)
+                rej("could not find post")
+            }
+        })
+    }
+
 
 
 }
