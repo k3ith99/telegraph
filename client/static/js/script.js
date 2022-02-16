@@ -1,32 +1,37 @@
-const form = document.getElementById('form');
-const title = document.getElementById('title');
-const pseudonym = document.getElementById('pseudonym');
-const story = document.getElementById('story')
-const submit = document.getElementById("submit")
+const form = document.getElementById('form')
 const url = ""
 const postContainer = document.getElementById("post-container")
 const singlePost = document.getElementById("single-post")
 
 
-submit.addEventListener('submit', sendData)
+form.addEventListener('submit', sendData)
 
 
 async function sendData(e) {
     e.preventDefault()
+
+    let title = e.target.title.value
+    let pseudonym = e.target.pseudonym.value
+    let story = e.target.story.value
     try {
+        const postData = {
+            title: title,
+            pseudonym: pseudonym,
+            post_body: story
+        }
         const options = {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+            body: JSON.stringify(postData)
         }
         console.log(options.body)
         const res = await fetch('http://localhost:3000/posts', options);
-        const { id, err } = await res.json();
+        const { path, err } = await res.json();
         if(err) { 
             throw Error(err) 
         } else {
-            window.location.hash = `#${id}`
-            updateContent()
+            window.location.hash = `#${path}`
+            getData()
         }
     } catch(err) {
         console.log(err)
